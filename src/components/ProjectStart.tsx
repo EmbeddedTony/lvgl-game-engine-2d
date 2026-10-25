@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, Box, FolderOpen, Gamepad2, Monitor, Plus, Sparkles } from 'lucide-react';
-import type { RecentProject } from '../desktop';
+import { desktop, type RecentProject } from '../desktop';
 export interface NewProjectOptions {
   name: string;
   width: number;
@@ -44,7 +44,7 @@ export function Welcome({
         <div className="welcome-logo">
           <Gamepad2 size={32} />
         </div>
-        <div className="eyebrow">LVGL GAME ENGINE · DESKTOP</div>
+        <div className="eyebrow">LVGL GAME ENGINE · {desktop ? 'DESKTOP' : 'BROWSER'}</div>
         <h1>
           Small screens.
           <br />
@@ -128,7 +128,7 @@ export function Welcome({
           </div>
         )}
         <p className="welcome-offline">
-          <i /> Runs entirely on your computer. No account needed.
+          <i /> {desktop ? 'Runs entirely on your computer. No account needed.' : 'No account needed. Save project downloads to keep backups.'}
         </p>
       </div>
     </div>

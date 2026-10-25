@@ -1640,6 +1640,17 @@ export function App() {
             LVGL<span>Game Engine</span>
           </div>
           <span className="version">0.2</span>
+          {!desktop && (
+            <a
+              className="experimental-platform-badge"
+              href="https://operationembedded.net/apps/lvgl-game-engine-2d#downloads"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Browser edition: edit, Play and export C here. Download projects to keep backups. Native C playtesting and board build/flash require the desktop app."
+            >
+              Browser edition
+            </a>
+          )}
           {experimentalPlatform && (
             <span
               className="experimental-platform-badge"
@@ -3753,7 +3764,7 @@ export function App() {
           >
             {muted ? <VolumeX size={13} /> : <Volume2 size={13} />}
           </button>
-          <span>{desktop ? 'Desktop · ' : ''}LVGL 9 · C99</span>
+          <span>{desktop ? 'Desktop · ' : 'Browser · '}LVGL 9 · C99</span>
           <span className="recovery-status">{saved ? 'Recovery saved' : 'Saving recovery…'}</span>
           <button title="Help" aria-label="Help" onClick={() => setModal('help')}>
             <CircleHelp size={13} />
