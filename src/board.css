@@ -1,0 +1,103 @@
+.board-panel {
+  padding: 24px;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+.board-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin: 24px 0;
+}
+.board-columns section {
+  background: #26292d;
+  border: 1px solid #454b52;
+  border-radius: 6px;
+  padding: 16px;
+  min-width: 0;
+}
+.board-columns h3 {
+  font-size: 14px;
+  margin: 0 0 18px;
+}
+.board-columns button {
+  margin: 8px 6px 0 0;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.board-columns input,
+.board-columns select {
+  width: 100%;
+  box-sizing: border-box;
+}
+.board-columns input[type='checkbox'] {
+  width: auto;
+}
+.board-columns .block-label {
+  margin: 12px 0;
+}
+.board-fps {
+  font-size: 48px;
+  font-variant-numeric: tabular-nums;
+  color: #a8d8bb;
+}
+.board-fps small {
+  font-size: 14px;
+  color: #acb6bd;
+}
+.board-metrics {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  font-size: 12px;
+  gap: 9px;
+}
+.board-metrics dd {
+  margin: 0;
+}
+.board-status {
+  padding: 12px;
+  background: #20272b;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.board-callout {
+  padding: 12px;
+  border: 1px solid #89784d;
+  background: #373327;
+}
+.board-panel .native-output {
+  max-height: 260px;
+  white-space: pre-wrap;
+  overflow: auto;
+  font-size: 11px;
+}
+@media (max-width: 1050px) {
+  .board-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+  .board-columns section:last-child {
+    grid-column: 1/-1;
+  }
+}
+.modal-board {
+  width: min(1220px, 96vw);
+  max-width: 96vw;
+  max-height: 92vh;
+  padding: 0;
+  overflow: auto;
+}
+.board-columns label.gameplay-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 16px 0;
+  line-height: 1.5;
+}
+.board-columns label.gameplay-check input {
+  margin-top: 3px;
+  flex-shrink: 0;
+}

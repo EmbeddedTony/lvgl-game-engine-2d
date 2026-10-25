@@ -1,0 +1,157 @@
+{
+  "name": "lvgl-game-engine-2d",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/sync-board-sources.cjs && node scripts/sync-license.cjs",
+    "prebuild": "node scripts/sync-board-sources.cjs && node scripts/sync-license.cjs",
+    "pretest": "node scripts/sync-board-sources.cjs && node scripts/sync-license.cjs",
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "tsx --test tests/*.test.ts",
+    "test:runtime": "sh scripts/test-runtime.sh",
+    "test:ui": "playwright test",
+    "test:lvgl": "sh scripts/test-lvgl.sh",
+    "format": "prettier --write src tests scripts vite.config.ts playwright.config.ts",
+    "sample": "tsx scripts/package-sample.ts",
+    "start": "electron .",
+    "desktop:build": "npm run build && npm run native:sdk && npm run cli:build && node scripts/prepare-desktop.cjs && electron-builder --mac dir --arm64 --publish never",
+    "desktop:dist": "npm run build && npm run native:sdk && npm run cli:build && node scripts/prepare-desktop.cjs && electron-builder --mac dmg --arm64 --publish never",
+    "test:desktop": "playwright test --config playwright.desktop.config.ts",
+    "test:files": "node --test tests/desktop/*.test.cjs",
+    "test:packaged": "playwright test --config playwright.packaged.config.ts",
+    "native:sdk": "node scripts/prepare-native-sdk.cjs",
+    "test:playtest": "npm run native:sdk && tsx scripts/export-starter.ts && tsx scripts/export-starter.ts .cache/generated-physics examples/PhysicsPlayground.lge.json && tsx scripts/export-starter.ts .cache/generated-inputs examples/PhysicalControllers.lge.json && node --test tests/playtest/*.test.cjs",
+    "test:portability": "python3 scripts/test-portability.py",
+    "bench:runtime": "sh scripts/benchmark-runtime.sh",
+    "test:examples": "sh scripts/test-examples.sh",
+    "test:gameplay": "sh scripts/test-gameplay.sh",
+    "test:toolkit": "sh scripts/test-toolkit.sh",
+    "test:rpg": "sh scripts/test-rpg.sh",
+    "example:country": "tsx scripts/create-country-example.ts",
+    "example:h7-country": "tsx scripts/create-h7-country-example.ts",
+    "example:h7-village": "tsx scripts/create-h7-pack-village.ts",
+    "test:h7": "sh scripts/test-h7.sh",
+    "board:h7": "python3 scripts/build-stm32h7s78.py",
+    "cli": "node bin/lge.cjs",
+    "cli:build": "node scripts/build-cli.cjs",
+    "test:cli": "npm run cli:build && tsx --test tests/automation.test.ts && node --test tests/cli/*.test.cjs",
+    "example:willowlight": "tsx scripts/create-willowlight-campaign.ts",
+    "test:campaign": "tsx scripts/test-willowlight.ts",
+    "test:campaign:native": "sh scripts/test-willowlight-native.sh",
+    "test:checkpoint-view": "sh scripts/test-checkpoint-view.sh",
+    "test:terrain-cache": "tsx scripts/test-terrain-cache.ts",
+    "test:inputs": "sh scripts/test-inputs.sh",
+    "test:hardware-inputs": "sh scripts/test-hardware-inputs.sh",
+    "example:inputs": "tsx scripts/create-input-example.ts"
+  },
+  "dependencies": {
+    "@codemirror/autocomplete": "^6.20.3",
+    "@codemirror/lang-cpp": "^6.0.3",
+    "@codemirror/language": "^6.13.1",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.14",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@lezer/highlight": "^1.2.5",
+    "codemirror": "^6.0.2",
+    "immer": "^11.1.21",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.0.0",
+    "@types/pngjs": "^6.0.5",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.28.2",
+    "pngjs": "^7.0.0",
+    "prettier": "^3.9.10",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0"
+  },
+  "description": "2D visual game editor and portable LVGL embedded runtime",
+  "main": "desktop/main.cjs",
+  "author": "LVGL Game Engine",
+  "build": {
+    "appId": "dev.lvglgameengine.studio2d",
+    "productName": "LVGL Game Engine 2D",
+    "asar": true,
+    "directories": {
+      "output": "release",
+      "buildResources": "desktop/resources",
+      "app": ".cache/desktop-app"
+    },
+    "files": [
+      "dist/**/*",
+      "desktop/**/*.cjs",
+      "package.json",
+      "!node_modules/**/*",
+      "LICENSE.md"
+    ],
+    "extraResources": [
+      {
+        "from": "desktop/resources/licenses",
+        "to": "licenses"
+      },
+      {
+        "from": ".cache/native-sdk",
+        "to": "native-sdk"
+      },
+      {
+        "from": "scripts/build-stm32h7s78.py",
+        "to": "board-tools/build-stm32h7s78.py"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "desktop/resources/icon.icns",
+      "identity": null,
+      "extendInfo": {
+        "NSBluetoothAlwaysUsageDescription": "Connect a BLE controller to monitor inputs and test your game bindings."
+      }
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Development"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "fileAssociations": [
+      {
+        "ext": "lge.json",
+        "name": "LVGL Game Project",
+        "role": "Editor"
+      }
+    ],
+    "electronVersion": "44.9.0",
+    "afterPack": "scripts/package-cli.cjs"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EmbeddedTony/lvgl-game-engine-2d.git"
+  }
+}

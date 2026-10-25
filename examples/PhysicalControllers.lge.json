@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "id": "physical_controllers",
+  "name": "Physical Controllers",
+  "width": 320,
+  "height": 240,
+  "colorDepth": 16,
+  "inputs": {
+    "sources": [
+      {
+        "id": "adc",
+        "name": "ADC joystick + GPIO button",
+        "kind": "adc"
+      },
+      {
+        "id": "ble",
+        "name": "BLE controller",
+        "kind": "ble"
+      },
+      {
+        "id": "serial",
+        "name": "Serial controller",
+        "kind": "serial"
+      }
+    ],
+    "channels": [
+      {
+        "id": "adc_x",
+        "name": "Horizontal stick",
+        "source": "adc",
+        "type": "int",
+        "binding": "moveX",
+        "min": 0,
+        "center": 2048,
+        "max": 4095,
+        "deadzone": 0.1,
+        "invert": false,
+        "smoothingMs": 0,
+        "timeoutMs": 500,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "none",
+          "offset": 0,
+          "bit": 0
+        }
+      },
+      {
+        "id": "adc_y",
+        "name": "Vertical stick",
+        "source": "adc",
+        "type": "int",
+        "binding": "moveY",
+        "min": 0,
+        "center": 2048,
+        "max": 4095,
+        "deadzone": 0.1,
+        "invert": true,
+        "smoothingMs": 0,
+        "timeoutMs": 500,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "none",
+          "offset": 0,
+          "bit": 0
+        }
+      },
+      {
+        "id": "adc_action",
+        "name": "Action button",
+        "source": "adc",
+        "type": "bool",
+        "binding": "action",
+        "min": 0,
+        "center": 0,
+        "max": 1,
+        "deadzone": 0,
+        "invert": false,
+        "smoothingMs": 0,
+        "timeoutMs": 500,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "none",
+          "offset": 0,
+          "bit": 0
+        }
+      },
+      {
+        "id": "ble_x",
+        "name": "Horizontal stick",
+        "source": "ble",
+        "type": "int",
+        "binding": "moveX",
+        "min": 0,
+        "center": 2048,
+        "max": 4095,
+        "deadzone": 0.1,
+        "invert": false,
+        "smoothingMs": 0,
+        "timeoutMs": 500,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "u16le",
+          "offset": 0,
+          "bit": 0
+        }
+      },
+      {
+        "id": "ble_y",
+        "name": "Vertical stick",
+        "source": "ble",
+        "type": "int",
+        "binding": "moveY",
+        "min": 0,
+        "center": 2048,
+        "max": 4095,
+        "deadzone": 0.1,
+        "invert": true,
+        "smoothingMs": 0,
+        "timeoutMs": 500,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "u16le",
+          "offset": 2,
+          "bit": 0
+        }
+      },
+      {
+        "id": "ble_action",
+        "name": "Action button",
+        "source": "ble",
+        "type": "bool",
+        "binding": "action",
+        "min": 0,
+        "center": 0,
+        "max": 1,
+        "deadzone": 0,
+        "invert": false,
+        "smoothingMs": 0,
+        "timeoutMs": 500,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "bit",
+          "offset": 4,
+          "bit": 0
+        }
+      },
+      {
+        "id": "serial_x",
+        "name": "Horizontal stick",
+        "source": "serial",
+        "type": "int",
+        "binding": "moveX",
+        "min": 0,
+        "center": 2048,
+        "max": 4095,
+        "deadzone": 0.1,
+        "invert": false,
+        "smoothingMs": 0,
+        "timeoutMs": 500,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "u16le",
+          "offset": 0,
+          "bit": 0
+        }
+      },
+      {
+        "id": "serial_y",
+        "name": "Vertical stick",
+        "source": "serial",
+        "type": "int",
+        "binding": "moveY",
+        "min": 0,
+        "center": 2048,
+        "max": 4095,
+        "deadzone": 0.1,
+        "invert": true,
+        "smoothingMs": 0,
+        "timeoutMs": 500,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "u16le",
+          "offset": 2,
+          "bit": 0
+        }
+      },
+      {
+        "id": "serial_action",
+        "name": "Action button",
+        "source": "serial",
+        "type": "bool",
+        "binding": "action",
+        "min": 0,
+        "center": 0,
+        "max": 1,
+        "deadzone": 0,
+        "invert": false,
+        "smoothingMs": 0,
+        "timeoutMs": 500,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "bit",
+          "offset": 4,
+          "bit": 0
+        }
+      },
+      {
+        "id": "temperature",
+        "name": "Temperature",
+        "source": "adc",
+        "type": "float",
+        "binding": "none",
+        "min": -40,
+        "center": 20,
+        "max": 125,
+        "deadzone": 0.1,
+        "invert": false,
+        "smoothingMs": 0,
+        "timeoutMs": 1000,
+        "pressThreshold": 0.6,
+        "releaseThreshold": 0.4,
+        "wire": {
+          "encoding": "none",
+          "offset": 0,
+          "bit": 0
+        }
+      }
+    ]
+  },
+  "sprites": [],
+  "audio": [],
+  "scenes": [
+    {
+      "id": "main",
+      "name": "Controller lab",
+      "background": "#18232b",
+      "objective": "",
+      "completion": "",
+      "music": "",
+      "nodes": [
+        {
+          "id": "readout",
+          "name": "Sensor readout",
+          "kind": "label",
+          "layer": "ui",
+          "x": 16,
+          "y": 16,
+          "width": 288,
+          "height": 80,
+          "color": "#e8eddc",
+          "radius": 0,
+          "text": "Physical inputs\nConnect a controller or use arrow keys.",
+          "asset": "",
+          "visible": true,
+          "solid": false,
+          "player": false,
+          "collectible": false,
+          "speed": 72,
+          "binding": "none",
+          "cue": "",
+          "uiLayer": true
+        },
+        {
+          "id": "player",
+          "name": "Player",
+          "kind": "rect",
+          "layer": "world",
+          "x": 144,
+          "y": 112,
+          "width": 20,
+          "height": 20,
+          "color": "#91c9a8",
+          "radius": 0,
+          "text": "",
+          "asset": "",
+          "visible": true,
+          "solid": false,
+          "player": true,
+          "collectible": false,
+          "speed": 90,
+          "binding": "none",
+          "cue": ""
+        }
+      ]
+    }
+  ],
+  "code": "#include \"ui.h\"\n#include <stdio.h>\nvoid game_on_event(lge_engine_t *game,lge_event_t event,lge_node_t *node,void *user) {\n    (void)game;(void)event;(void)node;(void)user;\n}\nvoid game_on_update(lge_engine_t *game,float delta_seconds,void *user) {\n    (void)game;(void)delta_seconds;(void)user;\n    float value;\n    if(ui_input_read_float(UI_CHANNEL_TEMPERATURE,&value)) {\n        char text[96];\n        if(value < -1000)value=-1000;\n        if(value > 1000)value=1000;\n        int tenths=(int)(value*10); /* No printf float formatting needed on small MCUs. */\n        snprintf(text,sizeof(text),\"Controller lab | temperature %d.%d C\",tenths/10,tenths<0?-(tenths%10):tenths%10);\n        ui_label_set_text(UI_NODE_READOUT,text);\n    }\n}\n"
+}

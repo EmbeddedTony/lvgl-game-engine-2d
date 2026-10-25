@@ -1,0 +1,199 @@
+.hardware-wizard {
+  min-height: 360px;
+}
+.hardware-steps {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+.hardware-steps button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  text-align: left;
+  padding: 10px;
+  background: #252e37;
+  border: 1px solid #425060;
+  color: #c5d0d9;
+  border-radius: 5px;
+}
+.hardware-steps button[aria-current='step'] {
+  background: #344e61;
+  border-color: #7fa9c2;
+  color: #fff;
+}
+.hardware-steps b {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #708c9b;
+  border-radius: 50%;
+}
+.hardware-intro h2 {
+  margin: 8px 0;
+}
+.hardware-intro p,
+.hardware-generated p {
+  color: #b5c4cd;
+  line-height: 1.5;
+  font-size: 12px;
+  margin: 8px 0 14px;
+}
+.hardware-pin-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 14px;
+  max-height: 46vh;
+  overflow: auto;
+}
+.hardware-card,
+.hardware-generated {
+  border: 1px solid #3c4854;
+  background: #222a33;
+  padding: 14px;
+  border-radius: 6px;
+}
+.hardware-card {
+  align-self: start;
+}
+.hardware-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  margin: 5px 0 12px;
+  min-width: 0;
+}
+.hardware-card label.input-checkbox {
+  flex-direction: row;
+  align-items: center;
+  font-weight: 600;
+}
+.hardware-card input:not([type='checkbox']),
+.hardware-card select {
+  width: 100%;
+  min-width: 0;
+  background: #18212b;
+  color: #e2e9ee;
+  padding: 8px;
+  border: 1px solid #4a5966;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.hardware-card small,
+.hardware-generated td small {
+  display: block;
+  color: #a5b7c4;
+  font-size: 10px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.hardware-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.hardware-card-title h2 {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+.hardware-card-title > label {
+  flex: 1;
+}
+.hardware-fields > label:only-child {
+  grid-column: 1 / -1;
+}
+.hardware-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.hardware-button + .hardware-button {
+  border-top: 1px solid #44515e;
+  margin-top: 14px;
+  padding-top: 10px;
+}
+.hardware-errors {
+  border-left: 3px solid #dd9b75;
+  padding: 4px 12px;
+  background: #49322a;
+  font-size: 12px;
+  margin-top: 12px;
+}
+.hardware-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+}
+.hardware-actions > span {
+  color: #9daebb;
+  font-size: 11px;
+}
+.hardware-reserved {
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 12px;
+  color: #b4c2cd;
+}
+.hardware-generated {
+  max-height: 46vh;
+  overflow: auto;
+}
+.hardware-generated table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 12px;
+}
+.hardware-generated th,
+.hardware-generated td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #3d4a55;
+}
+.hardware-generated pre {
+  white-space: pre-wrap;
+  font-size: 10px;
+  color: #b6d5c4;
+  overflow-wrap: anywhere;
+}
+.modal.modal-inputs:has(.hardware-wizard .live-monitor) {
+  height: min(940px, 94vh);
+  box-sizing: border-box;
+}
+.modal.modal-inputs:has(.hardware-wizard .live-monitor) .input-settings {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.hardware-wizard:has(.live-monitor) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.hardware-wizard .hardware-steps,
+.hardware-wizard .hardware-intro {
+  flex: none;
+}
+.hardware-wizard .live-monitor {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+.modal.modal-inputs:has(.hardware-wizard .live-monitor) .input-footer {
+  flex: none;
+}
+@media (max-width: 800px) {
+  .hardware-pin-layout {
+    grid-template-columns: 1fr;
+  }
+  .hardware-fields {
+    grid-template-columns: 1fr;
+  }
+}

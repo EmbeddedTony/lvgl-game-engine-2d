@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/STMicroelectronics/stm32h7rsxx-hal-driver",
+  "tag": "v1.2.0",
+  "license": "BSD-3-Clause; LICENSE.txt copied from matching pinned HAL distribution",
+  "files": {
+    "stm32h7rsxx_hal_adc.c": "e3f130b854f4e1c37ae3d0203daeb5570cbce7997dd4eef0ab90615e1a3f57ac",
+    "LICENSE.md": "294aed6fc88b93ea9cfd8d777684278287ebd343b170597f36fa7e19aefe7c21",
+    "stm32h7rsxx_hal_adc_ex.c": "11af3aafe42abf657a76ab552c3b1db148b9c1a1a61b9fec6694e36934485440",
+    "stm32h7rsxx_hal_adc.h": "528a86a8a210b889187349f440e085075388507472793d3e3655473cf0d649ca",
+    "stm32h7rsxx_ll_adc.h": "0406fe0628b66c5da1aef83c436e6af0ef70ee7b20e92ad624b9a5455f547ca3",
+    "LICENSE.txt": "d5a162f3eaf2b7b6762f00700017cae5695ebbdce7932fead8316448baafd9c1",
+    "stm32h7rsxx_hal_adc_ex.h": "070d275da329ec841044f2b3d652c4db3e09acbc3e3f166e65b1e90541869b93"
+  }
+}

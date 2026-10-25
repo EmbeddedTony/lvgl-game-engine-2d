@@ -1,0 +1,33 @@
+node_modules/
+dist/
+.cache/
+test-results/
+playwright-report/
+*.local
+*.tsbuildinfo
+
+release/
+desktop-test-results/
+
+.local-examples/
+desktop/cli/
+.lge-backups/
+*.lge-lock
+
+# Machine-local files and credentials
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Locally generated evidence and firmware export archives
+evidence/
+examples/*.lvgl.zip
+
+# Python tool caches
+__pycache__/
+*.pyc

@@ -1,0 +1,15 @@
+# Tilesheet import, terrain painting and animated tiles
+
+Use **Project → Import tileset…**. Drop or choose multiple images, confirm each suggested layout and add the selection to the queue. Importing commits the queue as one undoable document change. You may skip a sheet. Choose resource-only, a new layer, or the selected compatible tilemap. Layout and source/output size remain editable.
+
+Generic sheets use square tiles, optional margins/spacing, transparent-cell omission and exact duplicate merging. ACE/MV presets recognize A1 animated water, A2 floor terrain, A3 walls and A4 alternating floor/wall rows. These presets assemble independent quarter tiles and generate neighbor variants offline. B–E/ordinary 512×512 sheets and A5 use the normal grid. ACE uses 32px source tiles; MV uses 48px. This is an image-layout importer, not a complete RPG Maker project or passage/star-flag importer. Set collision in the palette after import. Layout geometry follows the [official asset standards](https://rpgmakerofficial.com/product/MV_Help/page/01_11_01.html).
+
+Select terrain blocks instead of slicing their quarters manually. Each terrain appears as one palette cell. Brush/rectangle/fill/erase recompute neighboring terrain edges at edit time; firmware receives ordinary compressed byte indices. Different terrain groups remain separate even when some pixels are identical. Animated water includes its source frame variants automatically; static variants remain static. A1 water uses a four-step forward/back loop, and waterfalls use three vertical frames.
+
+**Output tile size** applies nearest-pixel resampling before storage/export, e.g. 32→16 reduces pixel payload roughly fourfold. Source files are untouched. Review thin details after reducing. Select only useful terrain blocks: each floor needs up to 47 variants and animated water can need 141 images. One source tileset is limited to 255 images and one map to 255 paintable tile types; create separate layers/sets for larger banks. Projects allow 32 source tilesets / 2048 tile images. Queues exceeding project limits are rejected atomically.
+
+For custom animation, select 2–8 frames in the atlas, open **Animated tiles**, then **Animate selection**. The first tile becomes the brush. Edit frame order, add/remove frames and set 1–30 FPS. You can also edit or clear an imported terrain variant's animation. Collision and slopes stay attached to the base tile; animation never mutates map cells or bank indices. Changing an animation updates maps that reference the base tile.
+
+## Country Crossing
+
+Run `npm run example:country -- "/path/Country Woods - ACE (1)" "/path/Modern+ Outer Basic ACE (1)"` to generate `.local-examples/CountryCrossing.lge.json` and a clean `CountryCrossing.lvgl.zip`. This local example combines reduced Country Woods paths/grass/animated water and trees with Modern+ cottage/garden props and the RPG demo's original characters and battle setup. The supplied asset packs remain outside the distributable app. Generated licensed artwork stays in the ignored local example directory; retain your asset licenses if sharing it.

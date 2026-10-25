@@ -1,0 +1,340 @@
+.input-mode-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #40434c;
+  padding-bottom: 10px;
+}
+.input-mode-tabs button {
+  background: #272b33;
+  border: 1px solid #424955;
+  color: #bcc8d6;
+  border-radius: 4px;
+  padding: 7px 14px;
+}
+.input-mode-tabs button[aria-selected='true'] {
+  background: #3b526a;
+  color: #eff6ff;
+  border-color: #6a8dad;
+}
+.modal.modal-inputs:has(.live-monitor) {
+  width: min(1440px, 96vw);
+  max-width: 1440px;
+}
+.live-monitor {
+  height: min(68vh, 740px);
+  overflow: auto;
+}
+.live-monitor-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 0 0 14px;
+}
+.live-monitor-tools p {
+  color: #a9b7c6;
+  font-size: 12px;
+  margin: 6px 0 0;
+}
+.live-monitor-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.live-monitor.with-game .live-monitor-columns {
+  grid-template-columns: minmax(500px, 1fr) minmax(480px, 1fr);
+}
+.live-monitor-values,
+.live-game-test {
+  min-width: 0;
+}
+.live-connection,
+.live-calibration,
+.live-packet-test {
+  background: #252930;
+  border: 1px solid #3d4651;
+  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.live-connection-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 140px;
+  gap: 10px;
+}
+.live-monitor label {
+  font-size: 11px;
+  color: #c1cbd7;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.live-monitor .input-checkbox {
+  flex-direction: row;
+  white-space: normal;
+}
+.live-monitor .field-pair {
+  margin-top: 10px;
+}
+.live-monitor input,
+.live-monitor select,
+.live-monitor textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+.live-connection-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.live-connection-actions span {
+  color: #a3b9cd;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.live-input-table-wrap {
+  max-height: 260px;
+  overflow: auto;
+  border: 1px solid #3c444d;
+  border-radius: 5px;
+  margin-bottom: 14px;
+}
+.live-input-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.live-input-table th {
+  position: sticky;
+  top: 0;
+  background: #303741;
+  color: #aebdce;
+  z-index: 1;
+  text-align: left;
+  font-weight: 500;
+}
+.live-input-table th,
+.live-input-table td {
+  padding: 9px 8px;
+  border-bottom: 1px solid #363e47;
+}
+.live-input-table tr.selected {
+  background: #314455;
+}
+.live-input-table td:not(:first-child) {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.live-channel-name {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  color: #ebf0f7;
+  background: transparent;
+  border: none;
+  padding: 0;
+  max-width: 220px;
+  overflow-wrap: anywhere;
+}
+.live-channel-name small {
+  color: #9eb4c7;
+  font-size: 10px;
+}
+.live-input-state {
+  color: #c6b591;
+  font-size: 10px;
+}
+.live-input-state.active {
+  color: #8ed5b0;
+}
+.live-calibration h2 {
+  font-size: 14px;
+}
+.live-calibration code {
+  color: #97b9d4;
+  font-size: 10px;
+}
+.live-calibrated-value {
+  font: 23px monospace;
+  color: #a9ddcf;
+}
+.live-input-spark {
+  width: 100%;
+  height: 66px;
+  background: #1e242b;
+  border: 1px solid #3a4652;
+  border-radius: 3px;
+  margin: 8px 0;
+}
+.live-reading-detail {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: #a6b4c3;
+  margin: 9px 0;
+}
+.live-reading-detail b {
+  color: #e0e9f3;
+  font-weight: 500;
+}
+.live-calibration-actions {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.live-binding-label {
+  margin: 12px 0;
+}
+.live-monitor details {
+  margin-top: 10px;
+}
+.live-packet-test textarea {
+  resize: vertical;
+  min-height: 62px;
+  max-height: 180px;
+}
+.live-packet-test button {
+  margin: 8px 0;
+}
+.live-monitor-notice {
+  font-size: 11px;
+  color: #abd5c4;
+}
+.live-monitor-counters {
+  color: #a4b3c5;
+  font-size: 10px;
+  line-height: 1.8;
+}
+.live-monitor-counters span {
+  display: block;
+  color: #e3ba92;
+}
+.live-device-picker {
+  padding: 14px;
+  border: 1px solid #6888a7;
+  background: #283a4d;
+  border-radius: 5px;
+  margin-bottom: 14px;
+}
+.live-device-picker p {
+  font-size: 12px;
+}
+.live-device-picker > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.live-game-test {
+  background: #20252c;
+  border: 1px solid #405061;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.live-drive-toggle {
+  padding: 14px 14px 0;
+}
+.live-game-test > .field-hint {
+  padding: 0 14px;
+}
+.live-game-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 12px 14px;
+  padding: 10px;
+  background: #293d40;
+  color: #b7e1d0;
+  font-size: 11px;
+}
+.live-game-test .native-heading {
+  display: none;
+}
+.live-game-test .native-toolbar {
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 8px;
+}
+.live-game-test .native-toolbar label {
+  margin: 0;
+}
+.live-game-test .native-zoom,
+.live-game-test .native-toolbar-spacer {
+  display: none;
+}
+.live-game-test .native-screen {
+  min-height: 280px;
+  height: 300px;
+  flex: none;
+}
+.live-game-test .native-playtest {
+  min-height: 0;
+  height: auto;
+}
+.live-game-test .native-output {
+  margin: 8px;
+  max-height: 160px;
+}
+.live-game-test .native-output > div small {
+  display: none;
+}
+.live-game-test .native-output pre {
+  max-height: 90px;
+}
+.native-input-stale {
+  padding: 10px;
+  margin: 0;
+  background: #4a3c27;
+  color: #f1d3a0;
+  font-size: 12px;
+}
+@media (max-width: 1180px) {
+  .live-monitor.with-game .live-monitor-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .live-connection-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Keep the game visible while scrolling a long channel/calibration list. */
+.live-monitor {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.live-monitor-tools {
+  flex: none;
+}
+.live-monitor-columns {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.live-monitor-values {
+  overflow-y: auto;
+  max-height: 100%;
+  padding-right: 4px;
+}
+.live-game-test {
+  overflow-y: auto;
+  max-height: 100%;
+}
+@media (max-width: 1180px) {
+  .live-monitor.with-game .live-monitor-columns {
+    display: block;
+    overflow: auto;
+  }
+  .live-monitor.with-game .live-monitor-values,
+  .live-monitor.with-game .live-game-test {
+    overflow: visible;
+    max-height: none;
+  }
+}
