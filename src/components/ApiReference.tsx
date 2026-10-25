@@ -214,7 +214,7 @@ export function ApiReference({
         Read the full header <ChevronRight size={13} />
       </button>
       <div className="api-contract">
-        Native LVGL compiles and runs your C here. Play uses the fast built-in preview.
+        Use Native LVGL in the desktop app to compile and run C. Browser Play uses the built-in preview.
       </div>
     </aside>
   );
