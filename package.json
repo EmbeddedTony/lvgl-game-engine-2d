@@ -18,7 +18,7 @@
     "sample": "tsx scripts/package-sample.ts",
     "start": "electron .",
     "desktop:build": "npm run build && npm run native:sdk && npm run cli:build && node scripts/prepare-desktop.cjs && electron-builder --mac dir --arm64 --publish never",
-    "desktop:dist": "npm run build && npm run native:sdk && npm run cli:build && node scripts/prepare-desktop.cjs && electron-builder --mac dmg --arm64 --publish never",
+    "desktop:dist": "npm run build && npm run native:sdk && npm run cli:build && node scripts/prepare-desktop.cjs && electron-builder --mac dmg zip --arm64 --publish never",
     "test:desktop": "playwright test --config playwright.desktop.config.ts",
     "test:files": "node --test tests/desktop/*.test.cjs",
     "test:packaged": "playwright test --config playwright.packaged.config.ts",
@@ -123,10 +123,12 @@
         }
       ],
       "icon": "desktop/resources/icon.icns",
-      "identity": null,
+      "identity": "-",
       "extendInfo": {
         "NSBluetoothAlwaysUsageDescription": "Connect a BLE controller to monitor inputs and test your game bindings."
-      }
+      },
+      "hardenedRuntime": false,
+      "notarize": false
     },
     "linux": {
       "target": [
@@ -147,7 +149,8 @@
       }
     ],
     "electronVersion": "44.9.0",
-    "afterPack": "scripts/package-cli.cjs"
+    "afterPack": "scripts/package-cli.cjs",
+    "artifactName": "${name}-${version}-${os}-${arch}.${ext}"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "repository": {

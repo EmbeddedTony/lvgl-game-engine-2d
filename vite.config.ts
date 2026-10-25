@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 export default defineConfig({
+  define: { __LGE_EXPERIMENTAL_PLATFORM__: JSON.stringify(process.env.LGE_EXPERIMENTAL_PLATFORM || '') },
   plugins: [
     react(),
     {

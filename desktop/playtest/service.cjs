@@ -78,6 +78,7 @@ class NativePlaytestService {
   async capabilities() {
     try {
       const sdk = JSON.parse(await fs.readFile(path.join(this.sdkRoot, 'sdk.json'), 'utf8'));
+      if (sdk.available === false) return { available: false, reason: sdk.reason };
       if (sdk.platform !== process.platform || sdk.arch !== process.arch)
         throw new Error('This native SDK does not match this computer.');
       await execute(this.compiler, ['--version'], {

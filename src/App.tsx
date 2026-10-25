@@ -1,3 +1,4 @@
+import { experimentalPlatform } from './build-info';
 import { inputFiles } from './input/export';
 import { InputSettings } from './components/InputSettings';
 import { rpgNodes } from './rpg/view';
@@ -1639,6 +1640,15 @@ export function App() {
             LVGL<span>Game Engine</span>
           </div>
           <span className="version">0.2</span>
+          {experimentalPlatform && (
+            <span
+              className="experimental-platform-badge"
+              data-testid="experimental-platform"
+              title="Experimental platform build. Native LVGL C playtesting is unavailable; use Play preview or export."
+            >
+              {experimentalPlatform} · Experimental
+            </span>
+          )}
         </div>
         <EditorMenuBar menus={editorMenus} />
         <button

@@ -1,0 +1,51 @@
+name: Experimental Windows and Linux packages
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    name: ${{ matrix.label }} x64 (experimental)
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2022
+            label: Windows
+            target: --win nsis --x64
+          - runner: ubuntu-22.04
+            label: Linux
+            target: --linux AppImage --x64
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    env:
+      LGE_EXPERIMENTAL_PLATFORM: ${{ matrix.label }}
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Prepare renderer and experimental SDK manifest
+        run: npm run build && npm run native:sdk && npm run cli:build && node scripts/prepare-desktop.cjs
+      - name: Build installer
+        shell: bash
+        run: npx electron-builder ${{ matrix.target }} --publish never -c.artifactName='${name}-${version}-experimental-${os}-${arch}.${ext}'
+      - name: Linux display dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y xvfb libgtk-3-0 libnss3 libgbm1 libasound2
+      - name: Smoke test packaged Windows editor
+        if: runner.os == 'Windows'
+        run: npx playwright test --config playwright.release.config.ts
+      - name: Smoke test packaged Linux editor
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npx playwright test --config playwright.release.config.ts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: experimental-${{ matrix.label }}-x64
+          if-no-files-found: error
+          path: |
+            release/*experimental*.exe
+            release/*experimental*.AppImage

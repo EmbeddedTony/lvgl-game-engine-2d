@@ -17,6 +17,17 @@ Anyone can [suggest an improvement](https://github.com/EmbeddedTony/lvgl-game-en
 or submit a pull request from a fork. Changes require maintainer approval;
 only `@EmbeddedTony` can merge into `main`. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Download
+
+Download the [Mac Apple Silicon preview](https://github.com/EmbeddedTony/lvgl-game-engine-2d/releases/tag/v0.2.0).
+Experimental Windows x64 and Linux x64 downloads are on the same release page;
+those include editing, Play preview and export, with Native LVGL playtesting unavailable.
+
+Open the Mac DMG and drag the app to Applications, or unzip the ZIP. No browser,
+Node.js or dev server is needed. The preview is ad-hoc signed, not Developer ID
+signed or notarized; macOS may require **System Settings → Privacy & Security →
+Open Anyway** after the first launch attempt. See [release and platform notes](docs/Releases.md).
+
 ## Launch the app
 
 Build the standalone app with `npm ci` followed by `npm run desktop:build`, then open `release/mac-arm64/LVGL Game Engine 2D.app`. Build outputs are not included in this source repository.

@@ -1945,3 +1945,5 @@
   font-size: 9px;
   pointer-events: none;
 }
+
+.experimental-platform-badge { font-size: 10px; color: #ffe3a0; border: 1px solid #7d6639; background: #3f3523; border-radius: 3px; padding: 2px 5px; white-space: nowrap; }

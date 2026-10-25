@@ -4,6 +4,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 const COMMIT = 'c016f72d4c125098287be5e83c0f1abed4706ee5';
+const MIN_MACOS = '13.0';
 const ROOT = path.resolve(__dirname, '..');
 const sdk = path.join(ROOT, '.cache/native-sdk');
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -18,12 +19,38 @@ async function copyHeaders(source, target) {
   }
 }
 (async () => {
-  if (process.platform !== 'darwin' || process.arch !== 'arm64')
-    throw new Error('Native SDK packaging currently targets macOS arm64.');
+  if (process.platform !== 'darwin' || process.arch !== 'arm64') {
+    const expected = { win32: 'Windows', linux: 'Linux' }[process.platform];
+    if (!expected || process.env.LGE_EXPERIMENTAL_PLATFORM !== expected)
+      throw new Error(
+        'Native SDK packaging currently targets macOS arm64. Experimental platform builds must opt in explicitly.',
+      );
+    await fs.rm(sdk, { recursive: true, force: true });
+    await fs.mkdir(sdk, { recursive: true });
+    const reason = `Native LVGL C playtesting is unavailable in this experimental ${expected} build. Use Play for preview, or export the ui folder.`;
+    await fs.writeFile(
+      path.join(sdk, 'sdk.json'),
+      JSON.stringify(
+        {
+          version: 1,
+          available: false,
+          experimental: true,
+          platform: process.platform,
+          arch: process.arch,
+          reason,
+        },
+        null,
+        2,
+      ),
+    );
+    await fs.writeFile(path.join(sdk, 'README.txt'), reason + '\n');
+    console.log(reason);
+    return;
+  }
   const conf = await fs.readFile(path.join(ROOT, 'native/lv_conf.h'));
   const cmake = await fs.readFile(path.join(ROOT, 'native/CMakeLists.txt'));
   const fingerprint = digest(
-    Buffer.concat([conf, cmake, Buffer.from(COMMIT + process.platform + process.arch)]),
+    Buffer.concat([conf, cmake, Buffer.from(COMMIT + process.platform + process.arch + MIN_MACOS)]),
   );
   try {
     const manifest = JSON.parse(await fs.readFile(path.join(sdk, 'sdk.json'), 'utf8'));
@@ -63,6 +90,7 @@ async function copyHeaders(source, target) {
     'Ninja',
     `-DLVGL_SOURCE=${source}`,
     '-DCMAKE_BUILD_TYPE=Release',
+    `-DCMAKE_OSX_DEPLOYMENT_TARGET=${MIN_MACOS}`,
   ]);
   run('cmake', ['--build', build, '--target', 'lvgl', '-j', '6']);
   await fs.rm(sdk, { recursive: true, force: true });
@@ -83,6 +111,7 @@ async function copyHeaders(source, target) {
         commit: COMMIT,
         platform: process.platform,
         arch: process.arch,
+        minimumMacOS: MIN_MACOS,
         fingerprint,
         libraryHash: digest(await fs.readFile(path.join(sdk, 'liblvgl.a'))),
       },
