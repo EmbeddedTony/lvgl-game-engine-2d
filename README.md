@@ -11,6 +11,12 @@ A standalone visual game editor for **macOS Apple Silicon**, with a portable C99
 
 ![2D scene editor](docs/images/editor-2d.png)
 
+## Contributions
+
+Anyone can [suggest an improvement](https://github.com/EmbeddedTony/lvgl-game-engine-2d/issues/new)
+or submit a pull request from a fork. Changes require maintainer approval;
+only `@EmbeddedTony` can merge into `main`. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Launch the app
 
 Build the standalone app with `npm ci` followed by `npm run desktop:build`, then open `release/mac-arm64/LVGL Game Engine 2D.app`. Build outputs are not included in this source repository.
