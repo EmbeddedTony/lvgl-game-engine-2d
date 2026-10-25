@@ -4204,8 +4204,10 @@ export function App() {
                   </button>
                 </div>
                 <p className="field-hint">
-                  Version 0.2 · Standalone desktop editor. Native LVGL runs your C locally; Play
-                  runs the fast built-in preview. Export integrates through ui/ui.h.
+                  {desktop
+                    ? 'Version 0.2 · Standalone desktop editor. Native LVGL runs your C locally; Play runs the fast built-in preview.'
+                    : 'Version 0.2 · Browser edition. Edit scenes, use Play preview and export C. Native C playtesting and board build/flash require the desktop app. Browser recovery is local to this browser; download project files to keep backups.'}
+                  {' '}Export integrates through ui/ui.h.
                 </p>
               </>
             )}
